@@ -6,7 +6,18 @@ import org.kde.kirigami 2.20 as Kirigami
 Item {
     id: configGeneral
 
+    property alias cfg_wattageWarningThreshold: wattageWarningThresholdSpinBox.value
+    property alias cfg_isWattageWarningThreshold: wattageWarningThresholdSwitch.checked
+
     property alias cfg_wattageThreshold: wattageThresholdSpinBox.value
+    property alias cfg_isWattageThreshold: wattageThresholdSwitch.checked
+
+    property alias cfg_chargeThreshold: chargeThresholdSpinBox.value
+    property alias cfg_isChargeThreshold: chargeThresholdSwitch.checked
+
+    property alias cfg_timeThreshold: timeThresholdSpinBox.value
+    property alias cfg_isTimeThreshold: timeThresholdSwitch.checked
+
     property alias cfg_fontSize: fontSizeSpinBox.value
     property alias cfg_fontBold: fontBoldCheckBox.checked
     property alias cfg_fontFamily: fontFamilyComboBox.currentText
@@ -16,14 +27,45 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
 
+        QQC2.Switch {
+            id: wattageWarningThresholdSwitch
+            Kirigami.FormData.label: i18n("Warn on wattage:")
+            checked: plasmoid.configuration.isWattageWarningThreshold
+        }
+
+        QQC2.SpinBox {
+          id: wattageWarningThresholdSpinBox
+          Kirigami.FormData.label: i18n("Threshold for yellow color on battery (W):")
+          from: 0
+          to: wattageThresholdSpinBox.value
+          stepSize: wattageWarningThreshold.checked ? 1 : 0
+          value: plasmoid.configuration.wattageWarningThreshold
+          editable: wattageWarningThresholdSwitch.checked
+
+          textFromValue: function(value, locale) {
+            return value.toLocaleString(locale, 'f', 1)
+          }
+
+          valueFromText: function(text, locale) {
+            return Number.fromLocaleString(locale, text)
+          }
+        }
+
+
+        QQC2.Switch {
+          id: wattageThresholdSwitch
+          Kirigami.FormData.label: i18n("Recolor on wattage:")
+          checked: plasmoid.configuration.isWattageThreshold
+        }
+
         QQC2.SpinBox {
             id: wattageThresholdSpinBox
             Kirigami.FormData.label: i18n("Threshold for red color on battery (W):")
             from: 0
             to: 100
-            stepSize: 1
+            stepSize: wattageThresholdSwitch.checked ? 1 : 0
             value: plasmoid.configuration.wattageThreshold
-            editable: true
+            editable: wattageThresholdSwitch.checked
 
             textFromValue: function(value, locale) {
                 return value.toLocaleString(locale, 'f', 1)
@@ -33,6 +75,57 @@ Item {
                 return Number.fromLocaleString(locale, text)
             }
         }
+
+
+        QQC2.Switch {
+          id: chargeThresholdSwitch
+          Kirigami.FormData.label: i18n("Recolor on percentage:")
+          checked: plasmoid.configuration.isChargeThreshold
+        }
+
+        QQC2.SpinBox {
+          id: chargeThresholdSpinBox
+          Kirigami.FormData.label: i18n("Threshold for red color on battery (%):")
+          from: 0
+          to: 100
+          stepSize: chargeThresholdSwitch.checked ? 1 : 0
+          value: plasmoid.configuration.chargeThreshold
+          editable: chargeThresholdSwitch.checked
+
+          textFromValue: function(value, locale) {
+            return value.toLocaleString(locale, 'f', 1)
+          }
+
+          valueFromText: function(text, locale) {
+            return Number.fromLocaleString(locale, text)
+          }
+        }
+
+
+        QQC2.Switch {
+          id: timeThresholdSwitch
+          Kirigami.FormData.label: i18n("Recolor on time:")
+          checked: plasmoid.configuration.isTimeThreshold
+        }
+
+        QQC2.SpinBox {
+          id: timeThresholdSpinBox
+          Kirigami.FormData.label: i18n("Threshold for red color on battery (minutes):")
+          from: 0
+          to: 999
+          stepSize: timeThresholdSwitch.checked ? 1 : 0
+          value: plasmoid.configuration.timeThreshold
+          editable: timeThresholdSwitch.checked
+
+          textFromValue: function(value, locale) {
+            return value.toLocaleString(locale, 'f', 1)
+          }
+
+          valueFromText: function(text, locale) {
+            return Number.fromLocaleString(locale, text)
+          }
+        }
+
 
         QQC2.SpinBox {
             id: fontSizeSpinBox

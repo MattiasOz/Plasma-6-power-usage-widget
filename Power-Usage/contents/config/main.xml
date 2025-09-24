@@ -6,9 +6,34 @@
   <kcfgfile name=""/>
 
   <group name="General">
-    <entry name="wattageThreshold" type="Double">
+    <entry name="wattageWarningThreshold" type="Double">
       <default>12.0</default>
     </entry>
+    <entry name="isWattageWarningThreshold" type="Bool">
+      <default>true</default>
+    </entry>
+
+    <entry name="wattageThreshold" type="Double">
+      <default>20.0</default>
+    </entry>
+    <entry name="isWattageThreshold" type="Bool">
+      <default>true</default>
+    </entry>
+
+    <entry name="chargeThreshold" type="Int">
+      <default>20</default>
+    </entry>
+    <entry name="isChargeThreshold" type="Bool">
+      <default>true</default>
+    </entry>
+
+    <entry name="timeThreshold" type="Int">
+      <default>30</default>
+    </entry>
+    <entry name="isTimeThreshold" type="Bool">
+      <default>true</default>
+    </entry>
+
     <entry name="fontSize" type="Int">
       <default>10</default>
     </entry>

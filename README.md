@@ -1,4 +1,8 @@
-﻿# Plasma-6-power-usage-widget
+﻿# Fork
+I've forked this widget in order to add more info to it.  
+"Compile" via `7z a -tzip name.plasmoid Power-Usage`. 
+
+# Plasma-6-power-usage-widget
 
 Sadly, https://github.com/atul-g/plasma-power-monitor widget never got updated to Plasma 6. 
 With mighty help of various LLMs, I made a widget inspired by it. It doesn't share any code with it. I just liked the idea and what it did.
@@ -13,5 +17,4 @@ Font and update interval can be set in options. There is also an option to trigg
 ~~You may need to create a file with "export QML_XHR_ALLOW_FILE_READ=1" in it and place it in '~/.config/plasma-workspace/env/'. Or use EV.sh file attached.~~
 
 I uploaded widget to https://store.kde.org/p/2173278 so it can now be installed directly from Plasma.
-
 
